@@ -19,6 +19,7 @@ public interface TenantRepository extends CrudRepository<TenantInfo, Integer>, T
 	List<TenantInfo> findByTenantUsername(String tenantUsername);
 	List<TenantInfo> findByTenantEmail(String tenantEmail);
 	List<TenantInfo> findByTenantVerified(String tenantVerified);
+	List<TenantInfo> findByVerificationId(String verificationId);
 	
 	
 	@Query("SELECT t FROM TenantInfo t WHERE LOWER(t.tenantName) = :tenantName AND LOWER(t.tenantVerified) = :tenantVerified")
@@ -58,7 +59,7 @@ public interface TenantRepository extends CrudRepository<TenantInfo, Integer>, T
 	List<TenantInfo> findByTenantNameEmailVerification(@Param("tenantUsername") String tenantUsername, @Param("tenantName") String tenantName, @Param("tenantEmail") String tenantEmail, @Param("tenantVerified") String tenantVerified);
 	
 	@Query("SELECT t FROM TenantInfo t WHERE LOWER(t.verificationId) LIKE %:verificationId%")
-	List<TenantInfo> findByVerificationId(String verificationId);
+	List<TenantInfo> findByContainingVerificationId(@Param("verificationId") String verificationId);
 	
 	@Modifying
 	@Query("UPDATE TenantInfo t SET t.tenantVerified = 'Y' WHERE LOWER(t.verificationId) LIKE %:verificationId%")
