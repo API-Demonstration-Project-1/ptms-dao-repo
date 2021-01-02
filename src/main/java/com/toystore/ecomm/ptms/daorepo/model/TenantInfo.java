@@ -72,7 +72,7 @@ public class TenantInfo extends Auditable<String> {
 	private String tenantVerified;
 
 	@Column(name = "VERIFICATION_ID", nullable = false)
-	private String verificationId;
+	private Integer verificationId;
 
 	@Column(name = "ROLE_ID", nullable = false)
 	private Integer tenantRoleId;
